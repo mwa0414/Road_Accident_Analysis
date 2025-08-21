@@ -1,0 +1,44 @@
+table Calendar
+	lineageTag: 13028553-6a98-4302-9e45-be28ab8af9c2
+
+	column Date
+		formatString: General Date
+		lineageTag: f8534853-effd-456d-8a6d-91e20f7209d8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 5c4a0f29-13dc-4403-ad09-6e19f75da8db
+			defaultHierarchy: LocalDateTable_6e1142d6-2999-4ca6-b1e6-bb5c06b7f995.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = Year('Calendar'[Date])
+		formatString: 0
+		lineageTag: ddaf8074-ed02-4328-ab35-98205cd5f6b0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = FORMAT('Calendar'[Date], "mmm")
+		lineageTag: 61ab9baa-80d1-4573-be6b-a70b0cdb72f4
+		summarizeBy: none
+		sortByColumn: 'Month Number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Number' = MONTH('Calendar'[Date])
+		formatString: 0
+		lineageTag: 5bae01b2-300f-422e-9501-70a3a55e4c03
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = calculated
+		mode: import
+		source = CALENDAR(MIN(Data[Accident Date]),MAX(Data[Accident Date]))
+
+	annotation PBI_Id = 538fbb407b724cb9a95c2c0f96429196
+

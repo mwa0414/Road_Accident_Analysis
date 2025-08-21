@@ -1,0 +1,407 @@
+table Data
+	lineageTag: 6c113721-f96c-4aa9-9315-6c0576aae6bf
+
+	measure 'Total CY Casualties' = TOTALYTD(SUM(Data[Number_of_Casualties]),Calendar[Date])
+		formatString: 0
+		lineageTag: e2ced69c-6f4c-4682-8255-b7b3d311bae2
+
+	measure 'Total PY Casualties' = CALCULATE(SUM(Data[Number_of_Casualties]), SAMEPERIODLASTYEAR('Calendar'[Date]))
+		formatString: 0
+		lineageTag: b33de7e5-e67a-4d89-91c4-3fe20e403f55
+
+	measure 'YOY Casualties' = ([Total CY Casualties] - [Total PY Casualties]) / [Total PY Casualties]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4448f7af-6882-43ab-a393-6cb7fa12cf08
+
+	measure 'Total CY Accidents' = TOTALYTD(count(Data[Accident_Index]),'Calendar'[Date])
+		formatString: 0
+		lineageTag: 10e77520-1845-4e59-8bc0-8998d487e121
+
+	measure 'Total PY Accidents' = CALCULATE(count(Data[Accident_Index]),SAMEPERIODLASTYEAR('Calendar'[Date]))
+		formatString: 0
+		lineageTag: 4a69e222-d96e-42d7-9900-5223f0ffc966
+
+	measure 'YOY Accidents' = ([Total CY Accidents] - [Total PY Accidents]) / [Total PY Accidents]
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 8cdd3fa2-6ad4-461a-bd41-0d4acaf32696
+
+	column Accident_Index
+		dataType: string
+		lineageTag: 789aafe0-14b2-4410-940c-e9227a27d07c
+		summarizeBy: none
+		sourceColumn: Accident_Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Accident Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 28f1dfd7-4ef9-49bf-ac9e-a267fe3d66f8
+		summarizeBy: none
+		sourceColumn: Accident Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Day_of_Week
+		dataType: string
+		lineageTag: 9ce66604-bafc-4a6d-84a4-b9b104111b55
+		summarizeBy: none
+		sourceColumn: Day_of_Week
+
+		annotation SummarizationSetBy = Automatic
+
+	column Junction_Control
+		dataType: string
+		lineageTag: d0317660-45bd-48ba-a1b6-868a2e4f81e2
+		summarizeBy: none
+		sourceColumn: Junction_Control
+
+		annotation SummarizationSetBy = Automatic
+
+	column Junction_Detail
+		dataType: string
+		lineageTag: 90329a14-24e9-48f9-b88f-b50de97c918e
+		summarizeBy: none
+		sourceColumn: Junction_Detail
+
+		annotation SummarizationSetBy = Automatic
+
+	column Accident_Severity
+		dataType: string
+		lineageTag: 7c833ba1-b637-42cf-851a-56255fe6679a
+		summarizeBy: none
+		sourceColumn: Accident_Severity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: bb149ae1-c8a6-4552-8c4f-fac5de7247ea
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Light_Conditions
+		dataType: string
+		lineageTag: 06581ec3-1740-4d6b-af87-2fb6eeb1f5a8
+		summarizeBy: none
+		sourceColumn: Light_Conditions
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Data","TableItemName":"Light Conditions","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column Local_Authority_(District)
+		dataType: string
+		lineageTag: bd3315a8-e399-4a7d-b811-2481477946de
+		summarizeBy: none
+		sourceColumn: Local_Authority_(District)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Carriageway_Hazards
+		dataType: string
+		lineageTag: ce588339-1af4-4e40-b47a-730d2fabf028
+		summarizeBy: none
+		sourceColumn: Carriageway_Hazards
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: double
+		lineageTag: 2c6c6062-dbdd-46cc-b9ec-ad37295adf5b
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Number_of_Casualties
+		dataType: int64
+		formatString: 0
+		lineageTag: d3186e22-7bbd-4b54-b1c2-c64868795929
+		summarizeBy: sum
+		sourceColumn: Number_of_Casualties
+
+		annotation SummarizationSetBy = Automatic
+
+	column Number_of_Vehicles
+		dataType: int64
+		formatString: 0
+		lineageTag: 38c37f6e-a44f-45a0-b0b4-769283a02377
+		summarizeBy: sum
+		sourceColumn: Number_of_Vehicles
+
+		annotation SummarizationSetBy = Automatic
+
+	column Police_Force
+		dataType: string
+		lineageTag: c6973195-e174-4a78-8297-2858ee279059
+		summarizeBy: none
+		sourceColumn: Police_Force
+
+		annotation SummarizationSetBy = Automatic
+
+	column Road_Surface_Conditions
+		dataType: string
+		lineageTag: 4712ed3c-9e67-4ad2-84cb-ce64a788cea2
+		summarizeBy: none
+		sourceColumn: Road_Surface_Conditions
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Data","TableItemName":"Road_Surface_Conditions (groups)","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column Road_Type
+		dataType: string
+		lineageTag: 14aff172-f262-49fb-b7c5-0c259e26e629
+		summarizeBy: none
+		sourceColumn: Road_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Speed_limit
+		dataType: int64
+		formatString: 0
+		lineageTag: 5079daf8-db2a-4a7c-bc9b-3df0a820e781
+		summarizeBy: sum
+		sourceColumn: Speed_limit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 95fb88f9-25d1-4d1f-9123-184ca9b659b0
+		summarizeBy: none
+		sourceColumn: Time
+
+		variation Variation
+			isDefault
+			relationship: 6622c24c-b94f-4bfb-bf24-011d330c0f68
+			defaultHierarchy: LocalDateTable_f5d87eda-b715-4fbc-9abe-2ca8e9b8252b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Urban_or_Rural_Area
+		dataType: string
+		lineageTag: 84234004-f936-45cf-b919-fcfaa129f9d8
+		summarizeBy: none
+		sourceColumn: Urban_or_Rural_Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weather_Conditions
+		dataType: string
+		lineageTag: 9813c3a3-6187-4648-808c-91ccf811db3b
+		summarizeBy: none
+		sourceColumn: Weather_Conditions
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Data","TableItemName":"Weather Conditions","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column Vehicle_Type
+		dataType: string
+		lineageTag: 8239cc0d-a723-4fab-8847-d22aba8c1ee5
+		summarizeBy: none
+		sourceColumn: Vehicle_Type
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"Data","TableItemName":"Vehicle Type","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column 'Road_Surface_Conditions (groups)' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Data'[Road_Surface_Conditions]),
+				"(Blank)",
+				'Data'[Road_Surface_Conditions] IN {"Dry"},
+				"Dry",
+				'Data'[Road_Surface_Conditions] IN {"Frost or ice",
+					"Snow"},
+				"Snow Ice",
+				'Data'[Road_Surface_Conditions] IN {"Flood over 3cm. deep",
+					"Wet or damp"},
+				"Wet ",
+				'Data'[Road_Surface_Conditions]
+			)
+		lineageTag: c40ff56e-8a14-4b5e-a319-c97e0e07b0d8
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Data"
+				          }
+				        },
+				        "Property": "Road_Surface_Conditions"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"d","Entity":"Data"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Road_Surface_Conditions"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Dry","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Road_Surface_Conditions"}}],"Values":[[{"Literal":{"Value":"'Dry'"}}]]}}},{"DisplayName":"Snow Ice","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Road_Surface_Conditions"}}],"Values":[[{"Literal":{"Value":"'Frost or ice'"}}],[{"Literal":{"Value":"'Snow'"}}]]}}},{"DisplayName":"Wet ","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Road_Surface_Conditions"}}],"Values":[[{"Literal":{"Value":"'Flood over 3cm. deep'"}}],[{"Literal":{"Value":"'Wet or damp'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Weather Conditions' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Data'[Weather_Conditions]),
+				"(Blank)",
+				'Data'[Weather_Conditions] IN {"Fine + high winds",
+					"Fine no high winds"},
+				"Fine",
+				'Data'[Weather_Conditions] IN {"Other"},
+				"Other",
+				'Data'[Weather_Conditions] IN {"Raining + high winds",
+					"Raining no high winds"},
+				"Rain",
+				'Data'[Weather_Conditions] IN {"Fog or mist",
+					"Snowing + high winds",
+					"Snowing no high winds"},
+				"Snow",
+				'Data'[Weather_Conditions]
+			)
+		lineageTag: 44afd163-49fb-4f0a-8d00-41ae10e80266
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Data"
+				          }
+				        },
+				        "Property": "Weather_Conditions"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"d","Entity":"Data"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Weather_Conditions"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Fine","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Weather_Conditions"}}],"Values":[[{"Literal":{"Value":"'Fine + high winds'"}}],[{"Literal":{"Value":"'Fine no high winds'"}}]]}}},{"DisplayName":"Other","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Weather_Conditions"}}],"Values":[[{"Literal":{"Value":"'Other'"}}]]}}},{"DisplayName":"Rain","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Weather_Conditions"}}],"Values":[[{"Literal":{"Value":"'Raining + high winds'"}}],[{"Literal":{"Value":"'Raining no high winds'"}}]]}}},{"DisplayName":"Snow","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Weather_Conditions"}}],"Values":[[{"Literal":{"Value":"'Fog or mist'"}}],[{"Literal":{"Value":"'Snowing + high winds'"}}],[{"Literal":{"Value":"'Snowing no high winds'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vehicle Type' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Data'[Vehicle_Type]),
+				"(Blank)",
+				'Data'[Vehicle_Type] IN {"Agricultural vehicle"},
+				"Agricultural",
+				'Data'[Vehicle_Type] IN {"Motorcycle 125cc and under",
+					"Motorcycle 50cc and under",
+					"Motorcycle over 125cc and up to 500cc",
+					"Motorcycle over 500cc",
+					"Pedal cycle"},
+				"Bike",
+				'Data'[Vehicle_Type] IN {"Bus or coach (17 or more pass seats)",
+					"Minibus (8 - 16 passenger seats)"},
+				"Bus",
+				'Data'[Vehicle_Type] IN {"Car",
+					"Taxi/Private hire car"},
+				"Car",
+				'Data'[Vehicle_Type] IN {"Other vehicle",
+					"Ridden horse"},
+				"Other ",
+				'Data'[Vehicle_Type] IN {"Goods 7.5 tonnes mgw and over",
+					"Goods over 3.5t. and under 7.5t",
+					"Van / Goods 3.5 tonnes mgw or under"},
+				"Van",
+				'Data'[Vehicle_Type]
+			)
+		lineageTag: 73c350ee-b852-43e3-a13b-d3000a7148a5
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Data"
+				          }
+				        },
+				        "Property": "Vehicle_Type"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"d","Entity":"Data"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Vehicle_Type"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Agricultural","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Vehicle_Type"}}],"Values":[[{"Literal":{"Value":"'Agricultural vehicle'"}}]]}}},{"DisplayName":"Bike","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Vehicle_Type"}}],"Values":[[{"Literal":{"Value":"'Motorcycle 125cc and under'"}}],[{"Literal":{"Value":"'Motorcycle 50cc and under'"}}],[{"Literal":{"Value":"'Motorcycle over 125cc and up to 500cc'"}}],[{"Literal":{"Value":"'Motorcycle over 500cc'"}}],[{"Literal":{"Value":"'Pedal cycle'"}}]]}}},{"DisplayName":"Bus","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Vehicle_Type"}}],"Values":[[{"Literal":{"Value":"'Bus or coach (17 or more pass seats)'"}}],[{"Literal":{"Value":"'Minibus (8 - 16 passenger seats)'"}}]]}}},{"DisplayName":"Car","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Vehicle_Type"}}],"Values":[[{"Literal":{"Value":"'Car'"}}],[{"Literal":{"Value":"'Taxi/Private hire car'"}}]]}}},{"DisplayName":"Other ","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Vehicle_Type"}}],"Values":[[{"Literal":{"Value":"'Other vehicle'"}}],[{"Literal":{"Value":"'Ridden horse'"}}]]}}},{"DisplayName":"Van","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Vehicle_Type"}}],"Values":[[{"Literal":{"Value":"'Goods 7.5 tonnes mgw and over'"}}],[{"Literal":{"Value":"'Goods over 3.5t. and under 7.5t'"}}],[{"Literal":{"Value":"'Van / Goods 3.5 tonnes mgw or under'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Light Conditions' =
+			SWITCH(
+				TRUE,
+				ISBLANK('Data'[Light_Conditions]),
+				"(Blank)",
+				'Data'[Light_Conditions] IN {"Darkness - lighting unknown",
+					"Darkness - lights lit",
+					"Darkness - lights unlit",
+					"Darkness - no lighting"},
+				"Dark",
+				'Data'[Light_Conditions] IN {"Daylight"},
+				"Day",
+				'Data'[Light_Conditions]
+			)
+		lineageTag: 571ecf2e-4bfc-479f-819e-1a0b844e79c8
+		summarizeBy: none
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "Data"
+				          }
+				        },
+				        "Property": "Light_Conditions"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"d","Entity":"Data"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Light_Conditions"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Dark","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Light_Conditions"}}],"Values":[[{"Literal":{"Value":"'Darkness - lighting unknown'"}}],[{"Literal":{"Value":"'Darkness - lights lit'"}}],[{"Literal":{"Value":"'Darkness - lights unlit'"}}],[{"Literal":{"Value":"'Darkness - no lighting'"}}]]}}},{"DisplayName":"Day","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"d"}},"Property":"Light_Conditions"}}],"Values":[[{"Literal":{"Value":"'Daylight'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Data = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Shaik\Downloads\WASIM DOWNLOADS\Power BI Road Accident Data-20250820T055334Z-1-001\Power BI Road Accident Data\Road Accident Data.xlsx"), null, true),
+				    Data_Sheet = Source{[Item="Data",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Data_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Accident_Index", type text}, {"Accident Date", type date}, {"Day_of_Week", type text}, {"Junction_Control", type text}, {"Junction_Detail", type text}, {"Accident_Severity", type text}, {"Latitude", type number}, {"Light_Conditions", type text}, {"Local_Authority_(District)", type text}, {"Carriageway_Hazards", type text}, {"Longitude", type number}, {"Number_of_Casualties", Int64.Type}, {"Number_of_Vehicles", Int64.Type}, {"Police_Force", type text}, {"Road_Surface_Conditions", type text}, {"Road_Type", type text}, {"Speed_limit", Int64.Type}, {"Time", type datetime}, {"Urban_or_Rural_Area", type text}, {"Weather_Conditions", type text}, {"Vehicle_Type", type text}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type","Fetal","Fatal",Replacer.ReplaceText,{"Accident_Severity"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
