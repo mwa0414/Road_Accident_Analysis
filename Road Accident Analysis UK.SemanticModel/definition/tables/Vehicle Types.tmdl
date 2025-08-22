@@ -1,0 +1,29 @@
+table 'Vehicle Types'
+	lineageTag: 6e29f44a-5c50-422d-90f2-eb857418955e
+
+	column 'Vehicle Types'
+		lineageTag: e332210c-02d0-4d14-960c-4557e4ef60c9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Vehicle Types]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sum of Casualties'
+		formatString: 0
+		lineageTag: afcea92b-b48a-47ea-9a69-2ae85b023181
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Sum of Casualties]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Vehicle Types' = calculated
+		mode: import
+		source = ```
+				DISTINCT(SELECTCOLUMNS(Data, "Vehicle Types", Data[Vehicle Type], "Sum of Casualties", COUNT(Data[Number_of_Casualties])))
+				
+				```
+
+	annotation PBI_Id = 4707862a1a0f4ec28e13e0a8d21562d6
+

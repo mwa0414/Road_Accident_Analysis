@@ -1,0 +1,48 @@
+table 'Casualties by condition'
+	lineageTag: f081bfc1-6492-4a44-aa00-34283020c349
+
+	column 'Casualties by condition'
+		lineageTag: a31d444b-f917-45e7-96ec-151ba1dbf97e
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Casualties by condition Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Casualties by condition Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Casualties by condition Fields'
+		isHidden
+		lineageTag: 4cf112ac-da37-42df-8406-e59429ad7c0e
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Casualties by condition Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Casualties by condition Order'
+		isHidden
+		formatString: 0
+		lineageTag: c24c4133-f169-4460-98da-f04a5be58408
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Casualties by condition' = calculated
+		mode: import
+		source =
+				{
+				    ("Urban or Rural Area", NAMEOF('Data'[Urban_or_Rural_Area]), 0),
+				    ("Light Conditions", NAMEOF('Data'[Light Conditions]), 1)
+				}
+
+	annotation PBI_Id = ed0a6ff96a6b4701b1aeef886957a0d1
+

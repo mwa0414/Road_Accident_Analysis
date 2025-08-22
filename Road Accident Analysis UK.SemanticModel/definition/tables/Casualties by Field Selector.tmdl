@@ -1,0 +1,48 @@
+table 'Casualties by Field Selector'
+	lineageTag: 65bb351f-54c8-4f70-b4a9-3d83a7abc067
+
+	column 'Casualties by Field Selector'
+		lineageTag: d6c9ea0c-111c-424f-9fd1-2094852c2a52
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Casualties by Field Selector Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Casualties by Field Selector Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Casualties by Field Selector Fields'
+		isHidden
+		lineageTag: e50cc1a9-461b-460e-a009-8f812be4b4de
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Casualties by Field Selector Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Casualties by Field Selector Order'
+		isHidden
+		formatString: 0
+		lineageTag: ad95e4f1-d9e9-424f-a7f1-23b45e8c568f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Casualties by Field Selector' = calculated
+		mode: import
+		source =
+				{
+				    ("Road Type", NAMEOF('Data'[Road_Type]), 0),
+				    ("Vehicle Type", NAMEOF('Data'[Vehicle Type]), 1)
+				}
+
+	annotation PBI_Id = 58122e10ad3e4409b26ebd077820284f
+

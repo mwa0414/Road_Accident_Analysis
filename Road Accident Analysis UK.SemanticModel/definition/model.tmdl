@@ -19,6 +19,9 @@ ref table DateTableTemplate_0c0e7a7e-9312-4adc-9c4a-8e5ce810f7fb
 ref table LocalDateTable_f5d87eda-b715-4fbc-9abe-2ca8e9b8252b
 ref table Calendar
 ref table LocalDateTable_6e1142d6-2999-4ca6-b1e6-bb5c06b7f995
+ref table 'Casualties by Field Selector'
+ref table 'Casualties by condition'
+ref table 'Vehicle Types'
 
 ref cultureInfo en-US
 
